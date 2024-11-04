@@ -1,0 +1,72 @@
+---
+import Seo from "../components/Seo.astro";
+import { Image } from "astro:assets";
+import imgimages_gii_logo_webp from "../../public/images/gii_logo.webp";
+import imgimages_menu_bar_webp from "../../public/images/menu-bar.webp";
+import imgimages_gaiact_logo_webp from "../../public/images/gaiact_logo.webp";
+import imgimages_gaiact_instagram_icon_webp from "../../public/images/gaiact_instagram_icon.webp";
+import imgimages_gaiact_linkedin_icon_webp from "../../public/images/gaiact_linkedin_icon.webp";
+import imgimages_gaiact_left_footer_bg_webp from "../../public/images/gaiact-left-footer-bg.webp";
+import imgimages_gaiact_right_footer_bg_webp from "../../public/images/gaiact-right-footer-bg.webp";
+import '../styles/global.css';
+---
+
+<html lang="en">
+	<head>
+		
+        <script>
+        (() => {
+          const els = [...document.querySelectorAll('form')];
+          if (!els?.length) return;
+          els.forEach(el => {
+            console.log("Test 1")
+            el.addEventListener('submit', async (e) => {
+              console.log("Test 2")
+              e.preventDefault();
+              const formData = new FormData(e.target);
+              const formObject = Object.fromEntries(formData);
+              formObject.emailUser = "solenne.f@green-web.fr";
+              console.log("formObject",formObject)
+              console.log("Test 3")
+              try {
+                console.log("Test 4")
+                const response = await fetch('http://178.237.102.84:3000/api/send-mail-contact', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(formObject)
+                });
+                console.log("Test 5")
+                if (!response.ok) {
+                  throw new Error('Network response was not ok');
+                }
+                console.log("Test 6")
+                const result = await response.json();
+                console.log('Form submitted successfully:', result);
+              } catch (error) {
+                console.error('Error submitting form:', error);
+              }
+            });
+          });
+        })();
+      </script>
+        <Seo seo={{ title: "EcoBuilder", description: "Page description", keywords: "", canonical: "", image: '', type: "website", themeColor: "#ffffff"}} />
+		<meta charset="utf-8" />
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href="/favicon.svg"
+		/>
+		<meta
+			name="viewport"
+			content="width=device-width"
+		/>
+		<meta
+			name="generator"
+			content={Astro.generator}
+		/>
+		<title>Astro</title>
+	</head>
+	<body> <header class="flex flex-col relative shrink-0 box-border h-auto empty:min-h-[30vh] before:content-[&#x27;Header&#x27;] before:absolute before:top-0 before:left-0 before:inline-block before:py-1 before:px-2 before:bg-black/20 before:text-white before:text-sm before:rounded before:!rounded-tl-none before:!rounded-bl-none mb-[1px] header-section"><div class="header-component w-full bg-slate-800 shadow-[0px_4px_16px_rgba(0,0,0,0.08)]"><section class="px-4 sm:px-6 lg:px-8 max-md:px-5 flex lg:min-h-[147px] py-4 lg:py-6"><div class="flex flex-wrap items-center justify-between gap-10 max-w-screen-2xl w-full mx-auto"><a href="#"><Image alt="Company logo" src={imgimages_gii_logo_webp} width="400" height="300" class="my-auto aspect-[1.01] w-[48px] lg:w-[104px] shrink-0 self-stretch object-contain" /></a><nav class="max-md:max-w-full my-auto min-w-[240px] flex-wrap items-end gap-10 self-stretch text-base text-white hidden lg:flex"><a href="#" class="">Concept</a><a href="#" class="">Solution</a><a href="#" class="">Numérique Responsable</a><a href="#" class="">Blog</a><a href="#" class="uppercase">MADE BY GREENWEB</a></nav><button class="block lg:hidden ml-auto"><Image alt="Company logo" src={imgimages_menu_bar_webp} width="400" height="300" class="object-contain w-8 h-8" /></button><a href="#" class="max-md:px-5 my-auto min-w-[240px] gap-2.5 self-stretch overflow-hidden rounded-md bg-lime-500 px-12 py-2.5 text-xl font-semibold leading-snug text-slate-800 hidden lg:block">Réserver une démo</a></div></section></div></header><main class="flex flex-col relative shrink-0 box-border h-auto empty:min-h-[30vh] before:content-[&#x27;Main&#x27;] before:absolute before:top-0 before:left-0 before:inline-block before:py-1 before:px-2 before:bg-black/20 before:text-white before:text-sm before:rounded before:!rounded-tl-none before:!rounded-bl-none mb-[1px] main-section"><section class="main-component flex flex-col overflow-hidden bg-slate-800 text-white"><div class="max-md:px-5 max-md:max-w-full px-4 py-10 sm:px-6 lg:px-8"><div class="mx-auto max-w-screen-2xl"><div class="flex flex-col justify-center w-full"><div class="lg:text-[54px] leading-snug font-semibold text-center text-white text-4xl">Une info, une démo ? Contactez-nous !</div><div class="mt-14 text-2xl leading-5 text-center text-white max-md:mt-10 max-md:max-w-full">Veuillez compléter tous les champs.</div></div><form as="form"><div class="max-md:mt-10 mx-auto mt-14 flex w-full max-w-full flex-col justify-center self-center lg:max-w-screen-lg"><div class="max-md:max-w-full flex w-full flex-wrap items-start justify-center gap-6"><div class="mt-6 flex min-w-[240px] flex-1 shrink basis-0 flex-col"><label class="text-xl font-medium leading-none text-white">Prénom</label><input name="firstName" placeholder="Entrez votre prénom" autoComplete="given-name" class="mt-2 w-full flex-1 shrink gap-2 overflow-hidden rounded-md border border-solid border-zinc-300 bg-slate-700 px-4 py-3 text-base text-neutral-400"/></div><div class="mt-6 flex min-w-[240px] flex-1 shrink basis-0 flex-col"><label class="text-xl font-medium leading-none text-white">Nom</label><input name="lastName" placeholder="Entrez votre nom" autoComplete="family-name" class="mt-2 w-full flex-1 shrink gap-2 overflow-hidden rounded-md border border-solid border-zinc-300 bg-slate-700 px-4 py-3 text-base text-neutral-400"/></div></div><div class="mt-6 flex min-w-[240px] flex-1 shrink basis-0 flex-col"><label class="text-xl font-medium leading-none text-white">Adresse e-mail</label><input name="email" placeholder="Entrez votre adresse e-mail" autoComplete="email" class="mt-2 w-full flex-1 shrink gap-2 overflow-hidden rounded-md border border-solid border-zinc-300 bg-slate-700 px-4 py-3 text-base text-neutral-400"/></div><div class="mt-6 flex min-w-[240px] flex-1 shrink basis-0 flex-col"><label class="text-xl font-medium leading-none text-white">Société</label><input name="company" placeholder="Entrez votre société" autoComplete="organization" class="mt-2 w-full flex-1 shrink gap-2 overflow-hidden rounded-md border border-solid border-zinc-300 bg-slate-700 px-4 py-3 text-base text-neutral-400"/></div><div class="max-md:max-w-full mt-6 flex w-full flex-col"><label class="text-xl font-medium leading-none text-white">Message</label><textarea placeholder="Entrez votre message" rows="5" name="message" class="mt-2 min-h-[144px] w-full flex-1 shrink gap-2 overflow-hidden rounded-md border border-solid border-zinc-300 bg-slate-700 px-4 pb-28 pt-3 text-base text-neutral-400"></textarea></div><div class="max-md:max-w-full mt-6 flex w-full flex-wrap items-center gap-1.5 text-sm leading-none text-zinc-400"><div class="my-auto flex items-center gap-2 self-stretch"><input type="checkbox" name="privacyCheckbox"/><label for="privacyCheckbox" class="leading-snug lg:leading-none">En cochant cette case, j’accepte la politique de confidentialité</label></div></div><div class="pb-16 text-center"><button type="submit" class="max-md:mt-10 max-md:px-5 mt-12 inline-flex min-h-[50px] w-[90%] flex-col items-center justify-center gap-2.5 overflow-hidden rounded-md bg-lime-500 px-12 py-2.5 text-[14px] font-semibold leading-snug text-gray-900 transition-all md:w-auto md:min-w-[400px] md:text-base lg:text-xl">Envoyer</button></div></div></form></div></div></section></main><footer class="flex flex-col relative shrink-0 box-border h-auto empty:min-h-[30vh] before:content-[&#x27;Footer&#x27;] before:absolute before:top-0 before:left-0 before:inline-block before:py-1 before:px-2 before:bg-black/20 before:text-white before:text-sm before:rounded before:!rounded-tl-none before:!rounded-bl-none mb-[1px] footer-section"><section class="footer-component flex flex-col overflow-hidden bg-[#112c29] text-white relative"><div class="max-md:px-5 max-md:max-w-full px-8 py-8 lg:py-12 md:py-12 sm:px-6 lg:px-8 bg-[#112c29]"><div class="mx-auto max-w-screen-2xl"><div class=" flex max-w-full flex-col lg:items-center overflow-hidden"><div class="w-full max-w-[390px] md:max-w-full"><div class="items-top flex flex-col justify-between lg:gap-5 md:flex-row"><div class="items-top flex w-full flex-col md:w-[26%]"><div class="flex w-full flex-col overflow-hidden"><Image alt="Gaïact logo" src={imgimages_gaiact_logo_webp} width="400" height="300" class="w-[202px] max-w-full" loading="lazy" /></div><div class="flex min-h-[24px] w-36 max-w-full items-end gap-4 mt-10 z-30"><a href="#" target="_blank" class="text-gray-700 transition hover:text-[#AECA0E] dark:text-gray-300 " rel="noreferrer"><Image alt="instagram icon" src={imgimages_gaiact_instagram_icon_webp} width="400" height="300" class="h-full w-[24px] object-contain" loading="lazy" /></a><a href="#" target="_blank" class="rounded-[50%] bg-white text-gray-700 transition hover:text-[#AECA0E] dark:text-gray-300" rel="noreferrer"><Image alt="linkedin Icon" src={imgimages_gaiact_linkedin_icon_webp} width="400" height="300" class="h-full w-[24px] object-contain p-[4px]" loading="lazy" /></a></div></div><div class="flex w-full flex-col align-top md:ml-5 md:w-[42%]"><div class="max-md:mt-4 flex grow flex-col text-base leading-loose text-white md:flex-row"><div class="flex flex-1 flex-col overflow-hidden z-30"><a href="#" class="first:mt-0">Accueil</a><a href="#" class="first:mt-0">Gaïact</a><a href="#" class="first:mt-0">Contact</a><a href="#" class="first:mt-0">Mentions légales</a></div><div class="flex flex-1 flex-col overflow-hidden z-30"><a href="#" class="first:mt-0">Évènements</a><a href="#" class="first:mt-0">Média</a><a href="#" class="first:mt-0">Devenir membre</a></div></div></div><div class="max-md:items-start flex w-full flex-col items-center md:ml-5 md:w-[50%] md:items-end lg:items-end z-30"><div class="max-md:mt-4 flex w-full lg:max-w-[242px] flex-col items-end overflow-hidden text-white"><h2 class="w-full text-lg">Suivez l&#x27;actualité de Gaïact</h2></div></div></div></div><div class="z-20 mt-10 lg:mt-16 min-h-[1px] w-full self-stretch border border-solid border-zinc-300"></div><div class="z-30 text-base pt-10 md:pt-10 lg:pt-10 text-white leading-loose lg:leading-snug"><span>© <!-- -->2024<!-- --> GAÏACT - Site web créé par la société GreenWeb. L’ensemble des données est stocké en France par</span><a href="#" class="underline mx-1">Digital Forest</a><span>, hébergeur éco-responsable</span></div><Image alt="footer-bg-left" src={imgimages_gaiact_left_footer_bg_webp} width="400" height="300" class="absolute z-0 -left-8 md:left-[30px] lg:left-[120px] h-[70px] md:h-[122px] lg:h-[198px] bottom-0 w-auto" loading="lazy" /><!-- --><Image alt="footer-bg-right" src={imgimages_gaiact_right_footer_bg_webp} width="400" height="300" class=" absolute right-0 z-0 h-[102px] md:h-[170px] lg:h-[230px] bottom-0 top-24px w-auto" loading="lazy" /></div></div></div></section></footer> </body>
+</html>
